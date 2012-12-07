@@ -1,0 +1,19 @@
+<fieldset><legend><%= l(:setting_cat_as_tags) %></legend>
+  <p>
+    <label><%= l(:cat_as_tags_sidebar) %></label>
+    <%= select_tag 'settings[sidebar]', options_for_select(%w(none list cloud).collect{|v| [l("cat_as_tags_sidebar_#{v}"), v]}, @settings[:sidebar]) %>
+  </p>
+  <p>
+    <label><%= l(:cat_as_tags_count) %></label>
+    <%= check_box_tag 'settings[count]', 1, 1 == @settings[:count].to_i %>
+  </p>
+  <p>
+    <label><%= l(:cat_as_tags_open_only) %></label>
+    <%= check_box_tag 'settings[open_only]', 1, 1 == @settings[:open_only].to_i %>
+  </p>
+  <p>
+    <label><%= l(:cat_as_tags_sort_by) %></label>
+    <%= select_tag 'settings[sort_by]', options_for_select(%w(name count).collect{|v| [l("cat_as_tags_sort_by_#{v}"), v]}, @settings[:sort_by]) %>
+    <%= select_tag 'settings[order]', options_for_select(%w(asc desc).collect{|v| [l("cat_as_tags_order_#{v}"), v]}, @settings[:order]) %>
+  </p>
+</fieldset>

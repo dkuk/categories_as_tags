@@ -1,0 +1,17 @@
+  <% 
+  cat=print_cat
+  total=get_count_valid_cat 
+  %>
+  
+  <% for c in cat %>
+  <span class="cat_tag_<%= ((c.issues_count.to_f/total.to_f)*10).round %>">
+	<% if Setting.plugin_categories_as_tags['open_only'] %>
+		<%= link_to_filter c.cat_name, [[ :category_id, '~',  c.cat_id], [:status_id, 'o']], :project_id => @project.identifier %>	
+	<% else %>
+		<%= link_to_filter c.cat_name, [[ :category_id, '~',  c.cat_id]], :project_id => @project.identifier %>
+	<% end %>
+  <% if Setting.plugin_categories_as_tags['count'] %>
+  <span class="count">(<%= h c.issues_count %>)</span>
+  <% end %>
+  </span>
+  <% end %>

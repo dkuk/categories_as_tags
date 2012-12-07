@@ -1,0 +1,19 @@
+ru:
+  categories: "Категории"
+  cat_as_tags_sidebar: "Боковую панель как"
+  setting_cat_as_tags: "Отображение категорий как тегов"
+  cat_as_tags_sidebar_: "Отображение категорий как тегов"
+  cat_as_tags_sort_by: Упорядочить категории  
+  
+  cat_as_tags_sidebar_none: Не показывать
+  cat_as_tags_sidebar_list: Список
+  cat_as_tags_sidebar_cloud: Облако  
+  cat_as_tags_count: Показать кол-во заданий
+  cat_as_tags_open_only: Только открытые задания  
+  
+  cat_as_tags_sort_by_name: Названию
+  cat_as_tags_sort_by_count: Кол-ву заданий  
+  
+  cat_as_tags_order_asc: по возрастанию
+  cat_as_tags_order_desc: по убыванию 
+  

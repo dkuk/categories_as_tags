@@ -1,0 +1,16 @@
+<% if @project!=nil %>
+
+<% if Setting.plugin_categories_as_tags['sidebar'].to_s!='none' %> 
+	<h3><%= l(:categories) %></h3>
+	<% if Setting.plugin_categories_as_tags['sidebar'].to_s=='list' %> 
+	<%= render :partial => 'issues/cat_list' %>
+	<% end %>
+
+	<% if Setting.plugin_categories_as_tags['sidebar'].to_s=='cloud' %> 
+	<%= render :partial => 'issues/cat_cloud' %>
+	<% end %>
+
+
+<% end %>
+
+<% end %>
