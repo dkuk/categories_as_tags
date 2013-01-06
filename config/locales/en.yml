@@ -1,3 +1,15 @@
 # English strings go here for Rails i18n
 en:
-  my_label: "My label"
+  categories: "Categories"
+  setting_cat_as_tags: "Settings for Categories as tags"
+  cat_as_tags_sidebar: "Sidebar style"
+  cat_as_tags_sidebar_none: "No style"
+  cat_as_tags_sidebar_list: "as List"
+  cat_as_tags_sidebar_cloud: "as Clouds"
+  cat_as_tags_count: "Show counts?"
+  cat_as_tags_open_only: "Only open issues?"
+  cat_as_tags_sort_by: "Sort by"
+  cat_as_tags_sort_by_name: "Name"
+  cat_as_tags_sort_by_count: "Count"
+  cat_as_tags_order_asc: "ascending"
+  cat_as_tags_order_desc: "descending"
