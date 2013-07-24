@@ -45,40 +45,31 @@ module CategoriesAsTagsHelper
   end
 
   def print_cat
-	if Setting.plugin_categories_as_tags['sort_by'].to_s=='name'
-		sort_by='issue_categories.name'
-	else
-		if Setting.plugin_categories_as_tags['sort_by'].to_s=='count'
-			sort_by='issues_count'
-		end
-	end
+    sort_by = Setting.plugin_categories_as_tags['sort_by'].to_s == 'name' ? 'issue_categories.name' : 'issues_count'
+	  order_by=Setting.plugin_categories_as_tags['order'].to_s
 	
-	order_by=Setting.plugin_categories_as_tags['order'].to_s
-	
-	if Setting.plugin_categories_as_tags['open_only']
-	Issue.find_by_sql "
-	SELECT issue_categories.name AS 'cat_name', COUNT(issues.id) AS 'issues_count', issue_categories.id AS 'cat_id'
-	FROM issues, issue_categories, issue_statuses
-	WHERE issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s+" AND issues.status_id=issue_statuses.id
-	AND issue_statuses.is_closed!=1
-	GROUP BY issue_categories.id ORDER BY "+sort_by+" "+order_by
-
-	else
-	Issue.find_by_sql "
-	SELECT issue_categories.name AS 'cat_name', COUNT(issues.id) AS 'issues_count', issue_categories.id AS 'cat_id'
-	FROM issues, issue_categories
-	WHERE issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s+"
-	GROUP BY issue_categories.id ORDER BY "+sort_by+" "+order_by	
-	end
+	  if Setting.plugin_categories_as_tags['open_only']
+	    Issue.find_by_sql "
+	    SELECT issue_categories.name AS 'cat_name', COUNT(issues.id) AS 'issues_count', issue_categories.id AS 'cat_id'
+	    FROM issues, issue_categories, issue_statuses
+	    WHERE issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s+" AND issues.status_id=issue_statuses.id
+	    AND issue_statuses.is_closed!=1
+	    GROUP BY issue_categories.id ORDER BY #{sort_by} #{order_by}"
+	  else
+	    Issue.find_by_sql "SELECT issue_categories.name AS 'cat_name', COUNT(issues.id) AS 'issues_count', issue_categories.id AS 'cat_id'
+	    FROM issues, issue_categories
+	    WHERE issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s+"
+	    GROUP BY issue_categories.id ORDER BY #{sort_by} #{order_by}"
+	  end
   end
   
   def get_count_valid_cat
-	if Setting.plugin_categories_as_tags['open_only']
-	Issue.count :conditions => "issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s+" AND issues.status_id=issue_statuses.id
-	AND issue_statuses.is_closed!=1", :include=>[:category, :status]	
-	else
-	Issue.count :conditions => "issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s, :include=>"category"
-	end
+	  if Setting.plugin_categories_as_tags['open_only']
+	    Issue.count :conditions => "issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s+" AND issues.status_id=issue_statuses.id
+	      AND issue_statuses.is_closed!=1", :include=>[:category, :status]	
+	  else
+	    Issue.count :conditions => "issues.category_id = issue_categories.id AND issues.project_id="+@project.id.to_s, :include=>"category"
+	  end
   end  
 
 end

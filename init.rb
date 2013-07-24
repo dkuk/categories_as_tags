@@ -20,6 +20,8 @@ end
 Rails.application.config.to_prepare do
 	IssuesController.send(:include, CategoriesAsTags::IssuesControllerPatch)
 	GanttsController.send(:include, CategoriesAsTags::GanttsControllerPatch)
+  CalendarsController.send(:include, CategoriesAsTags::CalendarsControllerPatch)
 end
+
 
 require 'hooks/views_issues_hook'
