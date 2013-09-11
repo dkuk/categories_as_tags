@@ -13,3 +13,5 @@ en:
   cat_as_tags_sort_by_count: "Count"
   cat_as_tags_order_asc: "ascending"
   cat_as_tags_order_desc: "descending"
+  plugin_test_categories_as_tags: "categories_as_tags"
+  
