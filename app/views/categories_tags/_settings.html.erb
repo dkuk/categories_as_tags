@@ -17,3 +17,5 @@
     <%= select_tag 'settings[order]', options_for_select(%w(asc desc).collect{|v| [l("cat_as_tags_order_#{v}"), v]}, @settings[:order]) %>
   </p>
 </fieldset>
+
+<%= render "rmplus_logo" %>
