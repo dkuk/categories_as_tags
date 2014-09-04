@@ -1,0 +1,15 @@
+<script type="text/javascript">
+//<![CDATA[
+  $(document).ready(function() {
+    <% if controller.controller_name == 'issues' && controller.action_name == 'index' %>
+      <% if defined?(@project) && @project.present? && defined?(@issues) && @issues.present? %>
+        <% @issues.each do |issue| %>
+          link = '../' + '<%= @project.identifier %>' + '/issues?fields%5B%5D=category_id&fields%5B%5D=status_id&operators%5Bcategory_id%5D=~&operators%5Bstatus_id%5D=o&set_filter=1&values%5Bcategory_id%5D%5B%5D=' + '<%= issue.category_id %>' + '&values%5Bstatus_id%5D%5B%5D="';
+          $('tr#issue-' + '<%= issue.id %>' + ' td.category').wrapInner("<a href='"+ link +"' />");
+          delete link;
+        <% end %>
+      <% end %>
+    <% end %>
+  });
+//]]>
+</script>
